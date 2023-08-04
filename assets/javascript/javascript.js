@@ -1,16 +1,16 @@
 // dayjs for day, date and time format
 var today = dayjs().format('dddd') + " " + dayjs().format('DD MMM YYYY');
 var currentHour = dayjs().format('h:mm:ss a');
-// var for times of the day
-var nineAm = $("#9am");
-var tenAm = $("#10am");
-var elevenAm = $("#11am");
-var twelvePm = $("#12pm");
-var onePm = $("#13pm");
-var twoPm = $("#14pm");
-var threePm = $("#15pm");
-var fourPm = $("#16pm");
-var fivePm = $("#17pm");
+// var for times of the day and key for local storage
+var nineAm = $("#hour-9 textarea");
+var tenAm = $("#hour-10 textarea");
+var elevenAm = $("#hour-11 textarea");
+var twelvePm = $("#hour-12 textarea");
+var onePm = $("#hour-13 textarea");
+var twoPm = $("#hour-14 textarea");
+var threePm = $("#hour-15 textarea");
+var fourPm = $("#hour-16 textarea");
+var fivePm = $("#hour-17 textarea");
 
 
 var hour = parseInt(dayjs().hour());
@@ -28,34 +28,35 @@ var interval = setInterval(function () {
     $('#currentDay').html(today + " " + dayjsNow.format('hh:mm:ss A'));
 }, 100);
 
+//function to save to local storage and persist after refresh
 function saveTo() {
 
     console.log("Current Hour " + hour);
-    var time9 = JSON.parse(localStorage.getItem("09:00 am"));
+    var time9 = JSON.parse(localStorage.getItem("hour-9"));
     nineAm.val(time9);
 
-    var time10 = JSON.parse(localStorage.getItem("10:00 am"))
+    var time10 = JSON.parse(localStorage.getItem("hour-10"))
     tenAm.val(time10);
 
-    var time11 = JSON.parse(localStorage.getItem("11:00 am"))
+    var time11 = JSON.parse(localStorage.getItem("hour-11"))
     elevenAm.val(time11);
 
-    var time12 = JSON.parse(localStorage.getItem("12:00 pm"))
+    var time12 = JSON.parse(localStorage.getItem("hour-12"))
     twelvePm.val(time12);
 
-    var time1 = JSON.parse(localStorage.getItem("01:00 pm"))
+    var time1 = JSON.parse(localStorage.getItem("hour-13"))
     onePm.val(time1);
 
-    var time2 = JSON.parse(localStorage.getItem("02:00 pm"))
+    var time2 = JSON.parse(localStorage.getItem("hour-14"))
     twoPm.val(time2);
 
-    var time3 = JSON.parse(localStorage.getItem("03:00 pm"))
+    var time3 = JSON.parse(localStorage.getItem("hour-15"))
     threePm.val(time3);
 
-    var time4 = JSON.parse(localStorage.getItem("04:00 pm"))
+    var time4 = JSON.parse(localStorage.getItem("hour-16"))
     fourPm.val(time4);
 
-    var time5 = JSON.parse(localStorage.getItem("05:00 pm"))
+    var time5 = JSON.parse(localStorage.getItem("hour-17"))
     fivePm.val(time5);
 
 }
@@ -78,14 +79,14 @@ function background() {
 }
 
 $(document).ready(function () {
-    //   saveTo()
+    saveTo()
     background()
 
     // Button for to save to Local Storage
     $(".saveBtn").on("click", function () {
         var userInput = $(this).siblings(".description").val();
         console.log(userInput);
-        var hourSpan = $(this).siblings(".col-2 col-md-1 hour text-center py-3").text().trim();
+        var hourSpan = $(this).parent().attr("id");
         console.log(hourSpan);
         localStorage.setItem(hourSpan, JSON.stringify(userInput));
 
