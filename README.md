@@ -5,3 +5,9 @@ Day.js was used.
 # Screenshot 
 ![Alt text](image.png)
 
+# Repo Web location
+https://github.com/1014jorge/Work-Day-Planner
+
+# Web App Location
+
+https://1014jorge.github.io/Work-Day-Planner/
